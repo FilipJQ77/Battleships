@@ -2,9 +2,13 @@ namespace BattleshipsCore.Entities;
 
 public class ShipPart
 {
-    public int X { get; init; }
+    public ShipPart(Tile tile, bool destroyed)
+    {
+        Tile = tile;
+        Destroyed = destroyed;
+    }
 
-    public int Y { get; init; }
+    private Tile Tile { get; }
 
-    public bool Destroyed { get; set; }
+    private bool Destroyed { get; }
 }
