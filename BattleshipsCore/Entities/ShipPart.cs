@@ -8,7 +8,7 @@ public class ShipPart
         Destroyed = destroyed;
     }
 
-    private Tile Tile { get; }
+    internal Tile Tile { get; }
 
-    private bool Destroyed { get; }
+    internal bool Destroyed { get; }
 }

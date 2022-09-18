@@ -7,5 +7,10 @@ public class Ship
         ShipParts = shipParts;
     }
 
-    private IEnumerable<ShipPart> ShipParts { get; }
+    internal IEnumerable<ShipPart> ShipParts { get; }
+
+    public bool CheckShotAgainstShip(Shot shot)
+    {
+        return ShipParts.FirstOrDefault(a => a.Tile.X == shot.Tile.X && a.Tile.Y == shot.Tile.Y) != null;
+    }
 }

@@ -8,7 +8,7 @@ public class Shot
         ShotBefore = shotBefore;
     }
 
-    private Tile Tile { get; }
+    internal Tile Tile { get; }
 
-    private bool ShotBefore { get; }
+    internal bool ShotBefore { get; }
 }
