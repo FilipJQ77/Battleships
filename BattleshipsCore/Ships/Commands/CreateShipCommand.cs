@@ -3,7 +3,4 @@ using MediatR;
 
 namespace BattleshipsCore.Ships.Commands;
 
-public record CreateShipCommand(IEnumerable<Tile> Tiles) : IRequest<bool>
-{
-    public IEnumerable<Tile> Tiles { get; set; } = Tiles;
-}
+public record CreateShipCommand(IEnumerable<Tile> Tiles, int PlayerNumber) : IRequest<bool>;

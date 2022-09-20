@@ -19,7 +19,7 @@ public class GameManagerController : Controller
     [HttpPost(Name = "CreateShip")]
     public async Task<ActionResult<bool>> CreateShip()
     {
-        var request = new CreateShipCommand(new List<Tile>());
+        var request = new CreateShipCommand(new List<Tile>(), 1);
         var result = await _mediator.Send(request);
         return Ok(result);
     }

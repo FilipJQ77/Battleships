@@ -31,14 +31,14 @@ public class GameManagerService : IGameManager
 
     private IEnumerable<Shot> _player2Shots;
 
-    public bool AddShipToBoard(IEnumerable<Tile> tiles)
+    public bool AddShipToBoard(IEnumerable<Tile> tiles, int playerNumber)
     {
         var random = new Random();
         // TODO for testing purposes only
         return random.NextDouble() < 0.5;
     }
 
-    public bool TakeShot(Shot shot)
+    public bool TakeShot(Shot shot, int playerNumber)
     {
         throw new NotImplementedException();
     }

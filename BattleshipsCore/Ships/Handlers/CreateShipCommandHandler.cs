@@ -15,7 +15,7 @@ public class CreateShipCommandHandler : IRequestHandler<CreateShipCommand, bool>
 
     public Task<bool> Handle(CreateShipCommand request, CancellationToken cancellationToken)
     {
-        var result = _gameManager.AddShipToBoard(request.Tiles);
+        var result = _gameManager.AddShipToBoard(request.Tiles, request.PlayerNumber);
         return Task.FromResult(result);
     }
 }
