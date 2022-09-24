@@ -2,42 +2,53 @@
 
 <PageTitle>Battleships</PageTitle>
 
-<h1>Hello, world!</h1>
+<MudText Typo="Typo.h6">Battleships</MudText>
 
-Welcome to your new app.
 
-<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
-    <MudGrid>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6">
-            <MudGrid>
-                <MudItem xs="12">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-                <MudItem xs="12">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-            </MudGrid>
-        </MudItem>
-        <MudItem xs="12" sm="6">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-    </MudGrid>
-</MudContainer>
+<MudTable Items="@_elements" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <MudTh/>
+        @{
+            foreach (var i in Enumerable.Range(0, _gridSize))
+            {
+                <MudTh Style="text-align:center">
+                    <MudText Typo="Typo.h6">@_alphabet[i % _alphabet.Length]</MudText>
+                </MudTh>
+            }
+        }
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd Style="text-align:center">
+            @{
+                var index = _elements.IndexOf(context) + 1;
+                <MudText Typo="Typo.h6">
+                    @index
+                </MudText>
+            }
+        </MudTd>
+        @{
+            foreach (var i in Enumerable.Range(0, _gridSize))
+            {
+                <MudTd Style="text-align:center">@context[i].ToString()</MudTd>
+            }
+        }
+    </RowTemplate>
+</MudTable>
+
+@code {
+    private string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private int _gridSize = 10;
+    private readonly List<List<int>> _elements = new();
+    private readonly List<List<bool>> _clicked = new();
+
+    protected override Task OnInitializedAsync()
+    {
+        for (var i = 0; i < _gridSize; i++)
+        {
+            _elements.Add(Enumerable.Range(_gridSize * i + 1, _gridSize).ToList());
+            _clicked.Add(Enumerable.Range(_gridSize * i + 1, _gridSize).Select(x => false).ToList());
+        }
+        return Task.CompletedTask;
+    }
+
+}
