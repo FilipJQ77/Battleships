@@ -1,7 +1,4 @@
-using BattleshipsCore.Game.Services;
-using BattleshipsCore.Game.Services.Interfaces;
-using BattleshipsCore.Ships.Commands;
-using BattleshipsCore.Ships.Handlers;
+using BattleshipsAPI;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddMediatR(typeof(Program));
-builder.Services.AddScoped<IRequestHandler<CreateShipCommand, bool>, CreateShipCommandHandler>();
-builder.Services.AddSingleton<IGameManager, GameManagerService>();
+builder.Services.RegisterBattleships();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -2,15 +2,13 @@ namespace BattleshipsCore.Entities;
 
 public class Ship
 {
-    public Ship(IEnumerable<ShipPart> shipParts)
+    public Ship(IList<ShipPart> shipParts)
     {
         ShipParts = shipParts;
     }
 
-    internal IEnumerable<ShipPart> ShipParts { get; }
+    internal IList<ShipPart> ShipParts { get; }
 
-    public bool CheckShotAgainstShip(Shot shot)
-    {
-        return ShipParts.FirstOrDefault(a => a.Tile.X == shot.Tile.X && a.Tile.Y == shot.Tile.Y) != null;
-    }
+    public ShipPart? CheckShot(Tile shotTile)
+        => ShipParts.FirstOrDefault(a => a.Tile.X == shotTile.X && a.Tile.Y == shotTile.Y);
 }

@@ -10,5 +10,5 @@ public class ShipPart
 
     internal Tile Tile { get; }
 
-    internal bool Destroyed { get; }
+    internal bool Destroyed { get; set; }
 }

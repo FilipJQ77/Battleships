@@ -1,8 +1,8 @@
+using BattleshipsCore.Game.Commands;
 using BattleshipsCore.Game.Services.Interfaces;
-using BattleshipsCore.Ships.Commands;
 using MediatR;
 
-namespace BattleshipsCore.Ships.Handlers;
+namespace BattleshipsCore.Game.Handlers;
 
 public class CreateShipCommandHandler : IRequestHandler<CreateShipCommand, bool>
 {

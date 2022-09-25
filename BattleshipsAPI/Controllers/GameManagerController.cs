@@ -1,5 +1,6 @@
 using BattleshipsCore.Entities;
-using BattleshipsCore.Ships.Commands;
+using BattleshipsCore.Game.Commands;
+using BattleshipsCore.Game.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,34 @@ public class GameManagerController : Controller
         _mediator = mediator;
     }
 
-    [HttpPost(Name = "CreateShip")]
-    public async Task<ActionResult<bool>> CreateShip()
+    [HttpGet("/status", Name = "GameStatus")]
+    public async Task<ActionResult<GameStatus>> GetGameStatus()
     {
-        var request = new CreateShipCommand(new List<Tile>(), 1);
+        var request = new GetGameStatusQuery();
+        var result = await _mediator.Send(request);
+        return Ok(result);
+    }
+
+    [HttpGet("/ship/available", Name = "GetPossibleShips")]
+    public async Task<ActionResult<Dictionary<int, int>>> GetPossibleShips()
+    {
+        var request = new GetPossibleShipsQuery();
+        var result = await _mediator.Send(request);
+        return Ok(result);
+    }
+
+    [HttpPost("/ship/create", Name = "CreateShip")]
+    public async Task<ActionResult<bool>> CreateShip([FromQuery] int playerNumber, [FromBody] List<Tile> shipTiles)
+    {
+        var request = new CreateShipCommand(shipTiles, playerNumber);
+        var result = await _mediator.Send(request);
+        return Ok(result);
+    }
+
+    [HttpPost("/shot", Name = "TakeShot")]
+    public async Task<ActionResult<bool>> TakeShot([FromQuery] int playerNumber, [FromBody] Tile tile)
+    {
+        var request = new TakeShotCommand(tile, playerNumber);
         var result = await _mediator.Send(request);
         return Ok(result);
     }

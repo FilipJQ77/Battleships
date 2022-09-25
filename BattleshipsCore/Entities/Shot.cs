@@ -2,13 +2,13 @@ namespace BattleshipsCore.Entities;
 
 public class Shot
 {
-    public Shot(Tile tile, bool shotBefore)
+    public Shot(Tile tile, bool shotShip)
     {
         Tile = tile;
-        ShotBefore = shotBefore;
+        ShotShip = shotShip;
     }
 
     internal Tile Tile { get; }
 
-    internal bool ShotBefore { get; }
+    internal bool ShotShip { get; }
 }

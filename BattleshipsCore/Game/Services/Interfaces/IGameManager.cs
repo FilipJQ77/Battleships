@@ -4,7 +4,11 @@ namespace BattleshipsCore.Game.Services.Interfaces;
 
 public interface IGameManager
 {
-    bool AddShipToBoard(IEnumerable<Tile> tiles, int playerNumber);
+    GameStatus GetGameStatus();
+    
+    Dictionary<int, int> GetPossibleShips();
 
-    bool TakeShot(Shot shot, int playerNumber);
+    bool AddShipToBoard(IList<Tile> tiles, int playerNumber);
+
+    bool TakeShot(Tile shotTile, int playerNumber);
 }
