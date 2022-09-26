@@ -1,9 +1,13 @@
 ﻿@page "/"
+@using BattleshipsCore.Entities
+@using BattleshipsBlazor.ApiClient
+@inject ApiClient ApiClient
 
 <PageTitle>Battleships</PageTitle>
 
 <MudText Typo="Typo.h6">Battleships</MudText>
 
+<MudText Typo="Typo.h6">@_status.ToString()</MudText>
 
 <MudTable Items="@_elements" Breakpoint="Breakpoint.Sm">
     <HeaderContent>
@@ -40,15 +44,17 @@
     private int _gridSize = 10;
     private readonly List<List<int>> _elements = new();
     private readonly List<List<bool>> _clicked = new();
+    private GameStatus _status = new(new List<List<Ship>>(), new List<List<Shot>>());
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
+        _status = await ApiClient.GetGameStatus();
+        
         for (var i = 0; i < _gridSize; i++)
         {
             _elements.Add(Enumerable.Range(_gridSize * i + 1, _gridSize).ToList());
             _clicked.Add(Enumerable.Range(_gridSize * i + 1, _gridSize).Select(x => false).ToList());
         }
-        return Task.CompletedTask;
     }
 
 }

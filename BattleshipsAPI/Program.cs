@@ -1,7 +1,16 @@
 using BattleshipsAPI;
 using MediatR;
 
+const string corsPolicyName = "corsPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: corsPolicyName,
+        policy => { policy.WithOrigins("https://localhost:7226", "http://localhost:5226"); });
+});
 
 // Add services to the container.
 
@@ -23,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(corsPolicyName);
 
 app.UseAuthorization();
 

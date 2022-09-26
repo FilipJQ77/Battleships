@@ -22,4 +22,8 @@
       <Folder Include="Components" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BattleshipsCore\BattleshipsCore.csproj" />
+    </ItemGroup>
+
 </Project>
