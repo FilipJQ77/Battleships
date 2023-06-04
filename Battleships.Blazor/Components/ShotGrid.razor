@@ -1,0 +1,17 @@
+﻿@using Battleships.Core.Services.Interfaces
+@inject IGame Game
+
+<MudStack Spacing="1">
+    <MudText>Player shots:</MudText>
+    @for (var x = 0; x < Game.BoardSize; x++)
+    {
+        var firstCoordinate = x;
+        <MudStack Row="true" Spacing="1">
+            @for (var y = 0; y < Game.BoardSize; y++)
+            {
+                var secondCoordinate = y;
+                <ShotGridTile X="firstCoordinate" Y="secondCoordinate" ShotTiles="@Game.Player1.PlayerGameBoard.ShotTilesStates"/>
+            }
+        </MudStack>
+    }
+</MudStack>

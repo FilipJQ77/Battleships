@@ -1,0 +1,66 @@
+﻿@using Battleships.Core.Entities
+@using Battleships.Core.Services.Interfaces
+@inject IDialogService DialogService
+@inject IGame Game
+
+<MudButton Variant="Variant" Size="Size.Medium" Color="Color" Style="min-width: 3em; width: 3em; height: 3em;" OnClick="TogglePlacingShip">
+    <MudText Align="Align.Center">@Text</MudText>
+</MudButton>
+
+@code {
+
+    [Parameter]
+    public int X { get; set; }
+
+    [Parameter]
+    public int Y { get; set; }
+
+    [Parameter]
+    public ShipTileState[,] ShipTiles { get; set; }
+
+    [Parameter]
+    public ShotTileState[,] ShotTiles { get; set; }
+
+    private string Alphabet => "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    private string Text => $"{Alphabet[X]}{Y + 1}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        StateHasChanged();
+    }
+
+    private void TogglePlacingShip()
+    {
+        try
+        {
+            Game.Player1.PlayerGameBoard.ToggleCreatingShip(X, Y);
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            DialogService.ShowMessageBox("Exception", e.Message);
+        }
+    }
+
+    private Color Color => ShipTiles[X, Y] switch {
+        ShipTileState.Empty => Color.Primary,
+        ShipTileState.Ship => Color.Success,
+        ShipTileState.CreatingShip => Color.Info,
+        ShipTileState.DestroyedShip => Color.Error,
+        ShipTileState.OtherPlayerMiss => Color.Warning,
+        _ => Color.Primary
+        };
+
+
+    private Variant Variant => ShipTiles[X, Y] switch {
+        ShipTileState.Empty => Variant.Outlined,
+        ShipTileState.Ship => Variant.Filled,
+        ShipTileState.CreatingShip => Variant.Filled,
+        ShipTileState.DestroyedShip => Variant.Filled,
+        ShipTileState.OtherPlayerMiss => Variant.Outlined,
+        _ => Variant.Outlined
+        };
+
+}

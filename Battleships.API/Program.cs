@@ -1,6 +1,12 @@
+using Battleships.Core.Services;
+using Battleships.Core.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddSingleton<IGame, Game>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,6 +23,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(policyBuilder => policyBuilder
+    .WithOrigins("http://localhost:3000")
+    .Build());
 
 app.UseAuthorization();
 
