@@ -112,7 +112,8 @@ public class GameBoard
             }
         }
 
-        if (shipSizes.Any(ship => !possibleShips.ContainsKey(ship.Key) || possibleShips[ship.Key] != ship.Value))
+        if (possibleShips.Count != shipSizes.Count ||
+            shipSizes.Any(ship => !possibleShips.ContainsKey(ship.Key) || possibleShips[ship.Key] != ship.Value))
         {
             throw new ShipValidationException(
                 "Incorrect ship sizes (if the ships touch each other they are then counted as one ship.)");
@@ -136,11 +137,6 @@ public class GameBoard
 
     public bool ShootTile(Tile shotTile, GameBoard otherPlayerBoard)
     {
-        if (!Ready)
-        {
-            throw new IncorrectPlayerException("You need to put ships first in order to shoot.");
-        }
-
         if (shotTile.WouldBeOutOfBounds(BoardSize))
         {
             throw new OutOfBoundsException("Given shot tile would be out of bounds.");

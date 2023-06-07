@@ -86,6 +86,11 @@ public class Game : IGame
 
     public bool Shoot(int playerNumber, Tile shotTile)
     {
+        if (!Player1.PlayerGameBoard.Ready || !Player2.PlayerGameBoard.Ready)
+        {
+            throw new IncorrectPlayerException("In order to shoot all ships must be placed.");
+        }
+        
         return playerNumber switch
         {
             1 => Player1.PlayerGameBoard.ShootTile(shotTile, Player2.PlayerGameBoard),

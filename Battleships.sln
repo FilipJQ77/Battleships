@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleships.Core", "Battles
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleships.Blazor", "Battleships.Blazor\Battleships.Blazor.csproj", "{1EBEDD1B-F1C7-48E8-9BF4-824ABAC3F789}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleships.Tests", "Battleships.Tests\Battleships.Tests.csproj", "{CD899DD2-67BF-484E-887F-4EFB4482AC85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{1EBEDD1B-F1C7-48E8-9BF4-824ABAC3F789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EBEDD1B-F1C7-48E8-9BF4-824ABAC3F789}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EBEDD1B-F1C7-48E8-9BF4-824ABAC3F789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD899DD2-67BF-484E-887F-4EFB4482AC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD899DD2-67BF-484E-887F-4EFB4482AC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD899DD2-67BF-484E-887F-4EFB4482AC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD899DD2-67BF-484E-887F-4EFB4482AC85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
