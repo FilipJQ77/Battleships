@@ -17,6 +17,9 @@
 
     [Parameter]
     public ShotTileState[,] ShotTiles { get; set; }
+    
+    [Parameter]
+    public Action Refresh { get; set; }
 
     private string Alphabet => "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -40,6 +43,7 @@
             {
                 DialogService.ShowMessageBox("You lost!", "Better luck next time!");
             }
+            Refresh();
         }
         catch (Exception e)
         {
