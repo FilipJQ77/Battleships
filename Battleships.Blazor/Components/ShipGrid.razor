@@ -12,8 +12,7 @@
             {
                 var secondCoordinate = y;
                 <ShipGridTile X="firstCoordinate" Y="secondCoordinate"
-                              ShipTiles="@Game.Player1.PlayerGameBoard.ShipTilesStates"
-                              ShotTiles="@Game.Player1.PlayerGameBoard.ShotTilesStates" />
+                              ShipTiles="@Game.Player1.PlayerGameBoard.ShipTilesStates"/>
             }
         </MudStack>
     }
@@ -29,7 +28,6 @@
         try
         {
             Game.Player1.PlayerGameBoard.PlaceShips(Game.PossibleShips);
-            StateHasChanged();
         }
         catch (Exception e)
         {

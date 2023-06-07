@@ -27,7 +27,6 @@
         try
         {
             Game.Shoot(1, new Tile(X, Y));
-            StateHasChanged();
             if (Game.Player2.Lost)
             {
                 DialogService.ShowMessageBox("Congratulations!", "You win!");
@@ -35,9 +34,8 @@
 
             var random = new Random();
 
-            // AI turn
+    // AI turn
             Game.Shoot(2, new Tile(random.Next(0, Game.BoardSize), random.Next(0, Game.BoardSize)));
-            StateHasChanged();
             if (Game.Player1.Lost)
             {
                 DialogService.ShowMessageBox("You lost!", "Better luck next time!");
@@ -62,5 +60,4 @@
         ShotTileState.Hit => Variant.Filled,
         ShotTileState.Miss => Variant.Filled,
         };
-
 }

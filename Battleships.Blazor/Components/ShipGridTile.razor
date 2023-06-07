@@ -18,25 +18,15 @@
     [Parameter]
     public ShipTileState[,] ShipTiles { get; set; }
 
-    [Parameter]
-    public ShotTileState[,] ShotTiles { get; set; }
-
     private string Alphabet => "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private string Text => $"{Alphabet[X]}{Y + 1}";
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-        StateHasChanged();
-    }
 
     private void TogglePlacingShip()
     {
         try
         {
             Game.Player1.PlayerGameBoard.ToggleCreatingShip(X, Y);
-            StateHasChanged();
         }
         catch (Exception e)
         {
