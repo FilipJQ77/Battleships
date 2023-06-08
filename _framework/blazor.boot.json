@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Battleships.Blazor.dll": "sha256-zX1jpmDLPaqGqnOgB+Ko3EuvvcCjyl9fcyD5WJCCstU=",
+      "Battleships.Blazor.dll": "sha256-SDSzMAu5mo6RQBtRXSpF1sqwVxRH7STWWQ4iNc2GKmo=",
       "Battleships.Core.dll": "sha256-0LoQtF5IzmCdwGFqlMyx2YToC8zPcY6QvZ911QN8ob8=",
       "Microsoft.AspNetCore.Components.dll": "sha256-hjkOX1CJ\/NGEXedqUNqYqSLxEpvd9Cixeuva32IOWp8=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-OKFshuCAgXEDglyfBH4jOECaE\/0hdlydKYoWQ3vm3JY=",
