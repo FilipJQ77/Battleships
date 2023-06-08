@@ -1,8 +1,15 @@
 ﻿@page "/"
+@using Battleships.Core.Services.Interfaces
+@inject IGame Game
 
 <MudText Typo="Typo.h3" GutterBottom="true">Battleships!</MudText>
 
-<MudText Typo="Typo.h4"></MudText>
+@{
+    string ShipOrShips(int number) => number > 1 ? "ships" : "ship";
+    var shipText = string.Join(", ", Game.PossibleShips.Select(x => $"{x.Value} {ShipOrShips(x.Value)} of size {x.Key}"));
+}
+<MudText Typo="Typo.h4">Ships to place:</MudText>
+<MudText Typo="Typo.h6">@shipText</MudText>
 
 <MudStack Row="true" Spacing="10">
     <GameGrid/>
